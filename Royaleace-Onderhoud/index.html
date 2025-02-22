@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royaleace&Service</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+</style>
+<script>
+tailwind.config = {
+darkMode: 'class',
+theme: {
+extend: {
+colors: {
+primary: '#0066CC',
+secondary: '#FF6B35'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:root {
+color-scheme: light dark;
+}
+</style>
+<script>
+if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+document.documentElement.classList.add('dark')
+} else {
+document.documentElement.classList.remove('dark')
+}
+</script>
+</head>
+<body class="bg-white dark:bg-gray-900 min-h-screen transition-colors duration-200">
+<header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-sm z-50 transition-colors duration-200">
+<div class="container mx-auto px-4">
+<div class="h-16 flex items-center justify-between">
+<div class="flex items-center space-x-6">
+<button class="w-10 h-10 flex items-center justify-center lg:hidden" onclick="toggleMenu()">
+<i class="ri-menu-line text-xl"></i>
+</button>
+<div class="font-['Pacifico'] text-2xl text-primary">Royaleace</div>
+<nav class="hidden lg:flex space-x-6">
+<a href="#home" onclick="scrollToSection('home')" class="hover:text-primary dark:text-gray-200 transition-colors duration-200">Home</a>
+<a href="#diensten" onclick="scrollToSection('diensten')" class="hover:text-primary dark:text-gray-200 transition-colors duration-200">Diensten</a>
+<a href="#projecten" onclick="scrollToSection('projecten')" class="hover:text-primary dark:text-gray-200 transition-colors duration-200">Projecten</a>
+<a href="#before-after" onclick="scrollToSection('before-after')" class="hover:text-primary dark:text-gray-200 transition-colors duration-200">Voor & Na</a>
+<a href="#over-ons" onclick="scrollToSection('over-ons')" class="hover:text-primary dark:text-gray-200 transition-colors duration-200">Over Ons</a>
+<a href="#contact" onclick="scrollToSection('contact')" class="hover:text-primary dark:text-gray-200 transition-colors duration-200">Contact</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative hidden md:block">
+<input type="text" id="searchInput" placeholder="Zoek onze diensten..." class="w-64 px-4 py-2 pr-10 border rounded-lg text-sm dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:placeholder-gray-400" onkeyup="searchServices()">
+<div class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+<div id="searchResults" class="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-gray-700 rounded-lg shadow-lg hidden">
+</div>
+</div>
+<button id="themeToggle" class="w-10 h-10 flex items-center justify-center" onclick="toggleTheme()">
+<i class="ri-sun-line text-xl dark:hidden"></i>
+<i class="ri-moon-line text-xl hidden dark:block"></i>
+</button>
+<button onclick="scrollToSection('contact')" class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap">
+Contact
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-28">
+<section id="home" class="relative h-[600px] bg-cover bg-center" style="background-image: url('https://public.readdy.ai/ai/img_res/a20925616eb446f148ffb00ec7b92c8a.jpg')">
+<div class="absolute inset-0 bg-black bg-opacity-50"></div>
+<div class="container mx-auto px-4 relative h-full flex items-center">
+<div class="max-w-2xl text-white">
+<h1 class="text-5xl font-bold mb-6"></strong>Professionele Luchtkanaal Oplossingen</h1>
+<p class="text-xl mb-8">Meer dan 15 jaar ervaring in het leveren van hoogwaardige luchtkanaal installaties en onderhoud</p>
+<button onclick="showQuoteModal()" class="bg-primary text-white px-8 py-4 text-lg !rounded-button hover:bg-opacity-90 whitespace-nowrap">
+Offerte Aanvragen
+</button>
+<div class="grid grid-cols-3 gap-8 mt-12">
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 flex items-center justify-center bg-white rounded-full">
+<i class="ri-time-line text-primary text-xl"></i>
+</div>
+<span>24/7 Service</span>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 flex items-center justify-center bg-white rounded-full">
+<i class="ri-shield-check-line text-primary text-xl"></i>
+</div>
+<span>Gecertificeerd</span>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 flex items-center justify-center bg-white rounded-full">
+<i class="ri-medal-line text-primary text-xl"></i>
+</div>
+<span>15+ Jaar Ervaring</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="diensten" class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">Onze Diensten</h2>
+<div class="flex space-x-6 overflow-x-auto pb-6">
+<div class="min-w-[300px] bg-white rounded-lg shadow-sm p-6">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-4">
+<i class="ri-tools-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-3">Installatie</h3>
+<p class="text-gray-600 mb-4">installatie van luchtkanalen voor optimale ventilatie</p>
+<button onclick="showServiceDetails('installatie')" class="text-primary font-medium">Meer Info →</button>
+</div>
+<div class="min-w-[300px] bg-white rounded-lg shadow-sm p-6">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-4">
+<i class="ri-settings-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-3">Onderhoud</h3>
+<p class="text-gray-600 mb-4">Regelmatig onderhoud voor een gezond binnenklimaat</p>
+<button onclick="showServiceDetails('installatie')" class="text-primary font-medium">Meer Info →</button>
+</div>
+<div class="min-w-[300px] bg-white rounded-lg shadow-sm p-6">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-4">
+<i class="ri-error-warning-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-3">Inspectie</h3>
+<p class="text-gray-600 mb-4">Grondige inspectie van uw ventilatiesysteem</p>
+<button onclick="showServiceDetails('installatie')" class="text-primary font-medium">Meer Info →</button>
+</div>
+</div>
+</div>
+</section>
+<section id="over-ons" class="py-20 bg-primary bg-opacity-5">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">Over Ons</h2>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="bg-white p-6 rounded-lg text-center">
+<div class="w-16 h-16 mx-auto flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-4">
+<i class="ri-thumb-up-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Kwaliteit Gegarandeerd</h3>
+<p class="text-gray-600">Wij werken alleen met de beste materialen en technieken</p>
+</div>
+<div class="bg-white p-6 rounded-lg text-center">
+<div class="w-16 h-16 mx-auto flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-4">
+<i class="ri-team-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Ervaren Team</h3>
+<p class="text-gray-600">Ons team bestaat uit gecertificeerde professionals</p>
+</div>
+<div class="bg-white p-6 rounded-lg text-center">
+<div class="w-16 h-16 mx-auto flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-4">
+<i class="ri-timer-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Snelle Service</h3>
+<p class="text-gray-600">Binnen 24 uur ter plaatse bij spoedgevallen</p>
+</div>
+<div class="bg-white p-6 rounded-lg text-center">
+<div class="w-16 h-16 mx-auto flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-4">
+<i class="ri-price-tag-3-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-2">Scherpe Prijzen</h3>
+<p class="text-gray-600">Competitieve tarieven zonder verborgen kosten</p>
+</div>
+</div>
+</div>
+</section>
+<section id="before-after" class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">Voor & Na Transformaties</h2>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="relative">
+<img src="https://public.readdy.ai/ai/img_res/9f82118d4d3f4635209cf518c97189f6.jpg" alt="Voor" class="w-full h-64 object-cover">
+<div class="absolute top-4 left-4 bg-white px-4 py-2 rounded-full text-sm font-medium">Voor</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Verouderd Ventilatiesysteem</h3>
+<p class="text-gray-600">Vervuild en inefficiënt systeem met hoge energiekosten en slechte luchtkwaliteit.</p>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="relative">
+<img src="https://public.readdy.ai/ai/img_res/592be02dba8a5ab18c80022e3530bc1c.jpg" alt="Na" class="w-full h-64 object-cover">
+<div class="absolute top-4 left-4 bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">Na</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Gemoderniseerd Systeem</h3>
+<p class="text-gray-600">Geoptimaliseerd systeem met verbeterde luchtkwaliteit en lagere energiekosten.</p>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="relative">
+<img src="https://public.readdy.ai/ai/img_res/345bf571b9b6802bfaf3afccd4702771.jpg" alt="Voor" class="w-full h-64 object-cover">
+<div class="absolute top-4 left-4 bg-white px-4 py-2 rounded-full text-sm font-medium">Voor</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Commercieel Pand</h3>
+<p class="text-gray-600">Verouderde installatie met beperkte ventilatie en comfort problemen.</p>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="relative">
+<img src="https://public.readdy.ai/ai/img_res/19785ab57d5754c5f327a375d987bdde.jpg" alt="Na" class="w-full h-64 object-cover">
+<div class="absolute top-4 left-4 bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">Na</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Professionele Upgrade</h3>
+<p class="text-gray-600">Volledig gemoderniseerd systeem met optimale ventilatie en comfort.</p>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<button onclick="showQuoteModal()" class="bg-primary text-white px-8 py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap">
+Vraag een Inspectie Aan
+</button>
+</div>
+</div>
+</section>
+<section id="projecten" class="py-20">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">Onze Projecten</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/a7b99bd01cfd05fa6e8a4df09f769002.jpg" alt="Kantoorgebouw Project" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Kantoorgebouw Amsterdam</h3>
+<p class="text-gray-600 mb-4">Complete HVAC-systeem installatie voor een modern kantoorgebouw van 10 verdiepingen.</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">Afgerond: Jan 2025</span>
+<button onclick="showProjectDetails('kantoor')" class="text-primary font-medium">Details →</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/89f2b9f3d630a7ff83b0be51fe8ab659.jpg" alt="Magazijn Project" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Industrieel Magazijn</h3>
+<p class="text-gray-600 mb-4">Grootschalig ventilatiesysteem voor een logistiek centrum van 5000m².</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">Afgerond: Dec 2024</span>
+<button onclick="showProjectDetails('magazijn')" class="text-primary font-medium">Details →</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/95586d121a43836728432f600662da06.jpg" alt="Winkelcentrum Project" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">Winkelcentrum Rotterdam</h3>
+<p class="text-gray-600 mb-4">Renovatie en upgrade van het centrale luchtbehandelingssysteem.</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">Afgerond: Nov 2024</span>
+<button onclick="showProjectDetails('winkelcentrum')" class="text-primary font-medium">Details →</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+function showProjectDetails(project) {
+const projectDetails = {
+kantoor: {
+title: 'Kantoorgebouw Amsterdam',
+description: 'Een uitdagend project waarbij we een volledig nieuw HVAC-systeem hebben geïnstalleerd in een modern kantoorgebouw van 10 verdiepingen. Het systeem is uitgerust met de nieuwste technologieën voor energiebesparing en comfort.',
+specs: [
+'Oppervlakte: 15.000 m²',
+'45 luchtbehandelingsunits',
+'Geavanceerd gebouwbeheersysteem',
+'Energielabel A+++'
+],
+duration: '6 maanden',
+completion: 'Januari 2025'
+},
+magazijn: {
+title: 'Industrieel Magazijn',
+description: 'Installatie van een grootschalig ventilatiesysteem voor een nieuw logistiek centrum. Focus lag op efficiënte luchtcirculatie en temperatuurbeheersing voor optimale werkomstandigheden.',
+specs: [
+'Oppervlakte: 5.000 m²',
+'Industriële luchtbehandeling',
+'Zonegerichte klimaatbeheersing',
+'Energiezuinige ventilatie'
+],
+duration: '4 maanden',
+completion: 'December 2024'
+},
+winkelcentrum: {
+title: 'Winkelcentrum Rotterdam',
+description: 'Complete renovatie van het bestaande luchtbehandelingssysteem in een druk winkelcentrum. Uitdaging was om de werkzaamheden uit te voeren zonder verstoring van de dagelijkse activiteiten.',
+specs: [
+'Oppervlakte: 25.000 m²',
+'Centraal klimaatbeheer',
+'CO2-gestuurd ventilatiesysteem',
+'Warmteterugwinning'
+],
+duration: '8 maanden',
+completion: 'November 2024'
+}
+};
+const details = projectDetails[project];
+const modal = document.createElement('div');
+modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+modal.innerHTML = `
+<div class="bg-white rounded-lg p-6 max-w-lg w-full mx-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-xl font-bold">${details.title}</h3>
+<button onclick="this.closest('.fixed').remove()" class="w-8 h-8 flex items-center justify-center">
+<i class="ri-close-line text-xl"></i>
+</button>
+</div>
+<div class="space-y-4">
+<p class="text-gray-600">${details.description}</p>
+<div class="bg-gray-50 p-4 rounded-lg">
+<h4 class="font-bold mb-2">Specificaties:</h4>
+<ul class="space-y-2">
+${details.specs.map(spec => `<li class="flex items-center"><i class="ri-checkbox-circle-line text-primary mr-2"></i>${spec}</li>`).join('')}
+</ul>
+</div>
+<div class="flex justify-between items-center pt-4 border-t">
+<div>
+<p class="text-sm text-gray-600">Projectduur: ${details.duration}</p>
+<p class="text-sm text-gray-600">Afgerond: ${details.completion}</p>
+</div>
+<button onclick="showQuoteModal()" class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90">
+Vergelijkbaar Project?
+</button>
+</div>
+</div>
+</div>
+`;
+document.body.appendChild(modal);
+modal.addEventListener('click', (e) => {
+if (e.target === modal) {
+modal.remove();
+}
+});
+}
+</script>
+</div>
+</section>
+<section id="contact" class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">Contact</h2>
+<div class="grid md:grid-cols-2 gap-12">
+<div>
+<form class="bg-white p-6 rounded-lg shadow-sm">
+<div class="mb-4">
+<label class="block text-sm font-medium mb-2">Naam</label>
+<input type="text" name="name" required class="w-full px-4 py-2 border rounded-lg text-sm">
+</div>
+<div class="mb-4">
+<label class="block text-sm font-medium mb-2">E-mail</label>
+<input type="email" name="email" required class="w-full px-4 py-2 border rounded-lg text-sm">
+</div>
+<div class="mb-4">
+<label class="block text-sm font-medium mb-2">Bericht</label>
+<textarea name="message" required class="w-full px-4 py-2 border rounded-lg text-sm" rows="4"></textarea>
+</div>
+<button onclick="submitContactForm(event)" class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90">
+Versturen
+</button>
+</form>
+</div>
+<div>
+<div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+<h3 class="text-xl font-bold mb-4">Contactgegevens</h3>
+<div class="space-y-3">
+<div class="flex items-center">
+<i class="ri-phone-line text-primary mr-3"></i>
+<span>+31 61 442 7569</span>
+</div>
+<div class="flex items-center">
+<i class="ri-mail-line text-primary mr-3"></i>
+<span>info@luchtkanaal.nl</span>
+</div>
+<div class="flex items-center">
+<i class="ri-map-pin-line text-primary mr-3"></i>
+<span>Industrieweg 123, 1234 AB Amsterdam</span>
+</div>
+</div>
+</div>
+<div class="h-[300px] rounded-lg overflow-hidden">
+<img src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png" alt="Map of Netherlands" class="w-full h-full object-cover">
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-gray-900 text-white pt-16 pb-6">
+<div class="container mx-auto px-4">
+<div class="grid md:grid-cols-3 gap-12 mb-12">
+<div>
+<h3 class="text-xl font-bold mb-4">Quick Links</h3>
+<ul class="space-y-2">
+<li><a href="#Home" class="hover:text-primary">Home</a></li>
+<li><a href="#Diensten" class="hover:text-primary">Diensten</a></li>
+<li><a href="#Over Ons" class="hover:text-primary">Over Ons</a></li>
+<li><a href="#Contact" class="hover:text-primary">Contact</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-4">Contact</h3>
+<ul class="space-y-2">
+<li>Tel: +31 61 442 7569</li>
+<li>Email: 5Royalace@gmail.com</li>
+<li>Adres: Industrieweg 123</li>
+<li>1234 AB Amsterdam</li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-4">Certificeringen</h3>
+<div class="flex space-x-4">
+<img src="https://public.readdy.ai/ai/img_res/f1efd999d9f294006b621d652df49007.jpg" class="h-12">
+<img src="https://public.readdy.ai/ai/img_res/04b23a11b6c4d6cd7ae3b3fb05f96b73.jpg" class="h-12">
+</div>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-6">
+<div class="flex flex-wrap justify-between items-center">
+<p class="text-sm text-gray-400">© 2025 Luchtkanaal Specialist. Alle rechten voorbehouden.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-sm text-gray-400 hover:text-primary">Privacy Policy</a>
+<a href="#" class="text-sm text-gray-400 hover:text-primary">Algemene Voorwaarden</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+function showQuoteModal() {
+const modal = document.createElement('div');
+modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+modal.innerHTML = `
+<div class="bg-white rounded-lg p-6 max-w-lg w-full mx-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-xl font-bold">Offerte Aanvragen</h3>
+<button onclick="this.closest('.fixed').remove()" class="w-8 h-8 flex items-center justify-center">
+<i class="ri-close-line text-xl"></i>
+</button>
+</div>
+<form onsubmit="submitQuoteForm(event)" class="space-y-4">
+<div>
+<label class="block text-sm font-medium mb-2">Naam</label>
+<input type="text" name="name" required class="w-full px-4 py-2 border rounded-lg text-sm">
+</div>
+<div>
+<label class="block text-sm font-medium mb-2">E-mail</label>
+<input type="email" name="email" required class="w-full px-4 py-2 border rounded-lg text-sm">
+</div>
+<div>
+<label class="block text-sm font-medium mb-2">Telefoonnummer</label>
+<input type="tel" name="tel" required class="w-full px-4 py-2 border rounded-lg text-sm">
+</div>
+<div>
+<label class="block text-sm font-medium mb-2">Type Dienst</label>
+<select name="service" required class="w-full px-4 py-2 border rounded-lg text-sm">
+<option value="">Selecteer een dienst</option>
+<option value="installatie">Installatie</option>
+<option value="onderhoud">Onderhoud</option>
+<option value="inspectie">Inspectie</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2">Omschrijving</label>
+<textarea name="description" required class="w-full px-4 py-2 border rounded-lg text-sm" rows="4"></textarea>
+</div>
+<button type="submit" class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90">
+Versturen
+</button>
+</form>
+</div>
+`;
+document.body.appendChild(modal);
+modal.addEventListener('click', (e) => {
+if (e.target === modal) {
+modal.remove();
+}
+});
+}
+function showSuccessMessage(message) {
+const toast = document.createElement('div');
+toast.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+toast.textContent = message;
+document.body.appendChild(toast);
+setTimeout(() => {
+toast.remove();
+}, 3000);
+}
+function submitQuoteForm(event) {
+event.preventDefault();
+const form = event.target;
+const formData = new FormData(form);
+const mailtoLink = `mailto:bollysherida10000@gmail.com?subject=Nieuwe Offerte Aanvraag&body=Naam: ${formData.get('name')}%0D%0AEmail: ${formData.get('email')}%0D%0ATelefoon: ${formData.get('tel')}%0D%0ADienst: ${formData.get('service')}%0D%0AOmschrijving: ${formData.get('description')}`;
+window.location.href = mailtoLink;
+form.closest('.fixed').remove();
+showSuccessMessage('U wordt doorgestuurd naar uw e-mailprogramma');
+}
+function submitContactForm(event) {
+event.preventDefault();
+const form = event.target.closest('form');
+const formData = new FormData(form);
+const mailtoLink = `mailto:bollysherida10000@gmail.com?subject=Nieuw Contactformulier&body=Naam: ${formData.get('name')}%0D%0AEmail: ${formData.get('email')}%0D%0ABericht: ${formData.get('message')}`;
+window.location.href = mailtoLink;
+form.reset();
+showSuccessMessage('U wordt doorgestuurd naar uw e-mailprogramma');
+}
+function scrollToSection(sectionId) {
+const section = document.getElementById(sectionId);
+if (section) {
+const headerOffset = 64;
+const elementPosition = section.getBoundingClientRect().top;
+const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+window.scrollTo({
+top: offsetPosition,
+behavior: "smooth"
+});
+}
+}
+function toggleTheme() {
+if (document.documentElement.classList.contains('dark')) {
+document.documentElement.classList.remove('dark')
+localStorage.theme = 'light'
+} else {
+document.documentElement.classList.add('dark')
+localStorage.theme = 'dark'
+}
+}
+const searchData = [
+  {
+    title: 'Installatie',
+    description: 'Professionele installatie van luchtkanalen',
+    link: '#diensten'
+  },
+  {
+    title: 'Onderhoud',
+    description: 'Regelmatig onderhoud voor een gezond binnenklimaat',
+    link: '#diensten'
+  },
+  {
+    title: 'Inspectie',
+    description: 'Grondige inspectie van uw ventilatiesysteem',
+    link: '#diensten'
+  },
+  {
+    title: 'Kantoorgebouw Amsterdam',
+    description: 'Complete HVAC-systeem installatie voor kantoorgebouw',
+    link: '#projecten'
+  },
+  {
+    title: 'Industrieel Magazijn',
+    description: 'Grootschalig ventilatiesysteem voor logistiek centrum',
+    link: '#projecten'
+  },
+  {
+    title: 'Winkelcentrum Rotterdam',
+    description: 'Renovatie en upgrade van luchtbehandelingssysteem',
+    link: '#projecten'
+  }
+];
+function searchServices() {
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+  const searchTerm = searchInput.value.toLowerCase();
+  if (searchTerm.length < 2) {
+    searchResults.classList.add('hidden');
+    return;
+  }
+  const filteredResults = searchData.filter(item => 
+    item.title.toLowerCase().includes(searchTerm) || 
+    item.description.toLowerCase().includes(searchTerm)
+  );
+  if (filteredResults.length > 0) {
+    searchResults.innerHTML = filteredResults.map(result => `
+      <a href="${result.link}" class="block p-3 hover:bg-gray-100 dark:hover:bg-gray-600" onclick="handleSearchResultClick(event)">
+        <div class="font-medium">${result.title}</div>
+        <div class="text-sm text-gray-600 dark:text-gray-300">${result.description}</div>
+      </a>
+    `).join('');
+    searchResults.classList.remove('hidden');
+  } else {
+    searchResults.innerHTML = `
+      <div class="p-3 text-gray-600 dark:text-gray-300">
+        Geen resultaten gevonden
+      </div>
+    `;
+    searchResults.classList.remove('hidden');
+  }
+}
+function handleSearchResultClick(event) {
+  const link = event.currentTarget.getAttribute('href');
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchResults').classList.add('hidden');
+  scrollToSection(link.substring(1));
+}
+document.addEventListener('click', function(event) {
+  const searchResults = document.getElementById('searchResults');
+  const searchInput = document.getElementById('searchInput');
+  
+  if (!searchResults.contains(event.target) && event.target !== searchInput) {
+    searchResults.classList.add('hidden');
+  }
+});
+function toggleMenu() {
+const menu = document.createElement('div');
+menu.className = 'fixed inset-0 bg-black bg-opacity-50 z-50';
+menu.innerHTML = `
+<div class="bg-white w-64 h-full transform transition-transform">
+<div class="p-4 border-b">
+<div class="flex justify-between items-center">
+<div class="font-['Pacifico'] text-xl text-primary">Royaleace</div>
+<button onclick="this.closest('.fixed').remove()" class="w-8 h-8 flex items-center justify-center">
+<i class="ri-close-line text-xl"></i>
+</button>
+</div>
+</div>
+<nav class="p-4">
+<ul class="space-y-4">
+<li><a href="#" onclick="scrollToSection('home'); this.closest('.fixed').remove();" class="block py-2 hover:text-primary">Home</a></li>
+<li><a href="#" onclick="scrollToSection('diensten'); this.closest('.fixed').remove();" class="block py-2 hover:text-primary">Diensten</a></li>
+<li><a href="#" onclick="scrollToSection('projecten'); this.closest('.fixed').remove();" class="block py-2 hover:text-primary">Projecten</a></li>
+<li><a href="#" onclick="scrollToSection('before-after'); this.closest('.fixed').remove();" class="block py-2 hover:text-primary">Voor & Na</a></li>
+<li><a href="#" onclick="scrollToSection('over-ons'); this.closest('.fixed').remove();" class="block py-2 hover:text-primary">Over Ons</a></li>
+<li><a href="#" onclick="scrollToSection('contact'); this.closest('.fixed').remove();" class="block py-2 hover:text-primary">Contact</a></li>
+</ul>
+</nav>
+</div>
+`;
+document.body.appendChild(menu);
+menu.querySelector('.bg-white').classList.add('translate-x-0');
+menu.addEventListener('click', (e) => {
+if (e.target === menu) {
+menu.remove();
+}
+});
+}
+function showServiceDetails(service) {
+const serviceDetails = {
+installatie: {
+title: 'Installatie Service',
+description: 'Onze professionele installatie service omvat:\n\n- Gratis vooronderzoek en advies\n- Maatwerk installatie plannen\n- Gebruik van hoogwaardige materialen\n- Vakkundige montage\n- Uitgebreide kwaliteitscontrole\n- Garantie op werkzaamheden',
+price: 'Vanaf €750',
+duration: 'Gemiddeld 2-3 werkdagen'
+},
+onderhoud: {
+title: 'Onderhoud Service',
+description: 'Ons onderhoudspakket bestaat uit:\n\n- Periodieke inspectie\n- Reiniging van kanalen\n- Filter vervanging\n- Prestatie optimalisatie\n- Preventief onderhoud\n- 24/7 storingsdienst',
+price: 'Vanaf €250 per jaar',
+duration: 'Halfjaarlijks of jaarlijks'
+},
+inspectie: {
+title: 'Inspectie Service',
+description: 'Onze grondige inspectie omvat:\n\n- Visuele controle\n- Luchtmetingen\n- Lekdetectie\n- Hygiëne controle\n- Rapportage en advies\n- Certificering',
+price: 'Vanaf €175',
+duration: '2-4 uur'
+}
+};
+const details = serviceDetails[service];
+const modal = document.createElement('div');
+modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+modal.innerHTML = `
+<div class="bg-white rounded-lg p-6 max-w-lg w-full mx-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-xl font-bold">${details.title}</h3>
+<button onclick="this.closest('.fixed').remove()" class="w-8 h-8 flex items-center justify-center">
+<i class="ri-close-line text-xl"></i>
+</button>
+</div>
+<div class="space-y-4">
+<p class="whitespace-pre-line">${details.description}</p>
+<div class="flex justify-between items-center pt-4 border-t">
+<div>
+<p class="font-bold">${details.price}</p>
+<p class="text-sm text-gray-600">${details.duration}</p>
+</div>
+<button onclick="showQuoteModal()" class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90">
+Offerte Aanvragen
+</button>
+</div>
+</div>
+</div>
+`;
+document.body.appendChild(modal);
+modal.addEventListener('click', (e) => {
+if (e.target === modal) {
+modal.remove();
+}
+});
+}
+</script>
+</body>
+</html>
